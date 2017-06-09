@@ -1,7 +1,11 @@
 language: php
 php:
   - '7.1'
-dist: trusty
+services:
+  - docker
 sudo: false
-before_script: composer install --no-interaction --no-progress
-script: bin/testsuite
+before_script:
+  - composer install --no-interaction --no-progress
+script:
+  - bin/testsuite
+  - docker-compose build
