@@ -5,7 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG LANG=en_US.UTF-8
 ARG PHP_VERSION=7.1
 ARG TIMEZONE=UTC
-ARG USER_ID=501
 
 # Configure locale and timezone and install base packages
 RUN apt-get update && \
@@ -32,8 +31,6 @@ RUN apt-get update && \
         php${PHP_VERSION}-xml && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
-    # Configure www-data user
-    usermod -d /var/www -s /bin/bash -u ${USER_ID} www-data && \
     # Configure Xdebug
     rm /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini && \
     echo "xdebug.remote_enable=1\nxdebug.remote_connect_back=1\n" > /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini && \

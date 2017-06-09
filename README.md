@@ -53,7 +53,7 @@ Usage
 PHPStorm
 --------
 
-Make sure you installed the EditorConfig plugin.
+Make sure you installed the **EditorConfig** plugin.
 
 To **Start listening for PHP Debug Connections** (the topright phone icon) make sure you have configured a PHP Server
 called "docker" and add mapping on the root of project to `/var/www`.
