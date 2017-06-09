@@ -8,12 +8,12 @@ ARG TIMEZONE=UTC
 ARG USER_ID=501
 
 # Configure locale and timezone and install base packages
-RUN locale-gen $LANG && \
+RUN apt-get update && \
+    apt-get -yq install --no-install-recommends \
+        ca-certificates locales bzip2 git curl zip unzip acl patch && \
+    locale-gen $LANG && \
     echo $TIMEZONE > /etc/timezone && \
     ln -fs /usr/share/zoneinfo/$TIMEZONE /etc/localtime && \
-    apt-get update && \
-    apt-get -yq install --no-install-recommends \
-        ca-certificates bzip2 git curl zip unzip acl patch && \
     # Install php and base packages
     echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" >> /etc/apt/sources.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C && \
